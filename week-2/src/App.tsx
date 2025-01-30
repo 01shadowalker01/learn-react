@@ -2,11 +2,21 @@ import { useState } from "react";
 
 export default function Board() {
   const [squares, setSquares] = useState<("X" | "O" | '')[]>(Array(9).fill(''));
+  const [turn, setTurn] = useState<("X" | "O")>("X")
 
   function handleClick(index: number) {
     const nextSquares = squares.slice();
-    nextSquares[index] = "X";
-    setSquares(nextSquares);
+    const isEmpty = nextSquares[index] == "";
+    if (isEmpty) {
+      nextSquares[index] = turn;
+      setSquares(nextSquares);
+      switchTurn();
+    }
+  }
+
+  function switchTurn() {
+    const nextTurn = turn === "X" ? "O" : "X";
+    setTurn(nextTurn);
   }
 
   let counter = 0;
