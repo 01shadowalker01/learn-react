@@ -88,3 +88,14 @@ body {
 .game-info {
   margin-left: 20px;
 }
+
+.wrapper {
+  display: flex;
+  gap: 2rem;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
