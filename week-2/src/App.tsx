@@ -1,25 +1,22 @@
 import { useState } from "react";
-type SquareValue = "X" | "O" | "";
-type Player = "X" | "O";
+import { Player, SquareInputs, SquareValue } from "./game.models";
 
-export default function Board() {
+type BoardInput = {
+  onPlayerMove: (squares: SquareValue[]) => void;
+};
 
+export default function Board({ onPlayerMove }: BoardInput) {
   const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(""));
-  const [history, setHistory] = useState<SquareValue[][]>([Array(9).fill("")]);
-  const [turn, setTurn] = useState<Player>("X");
-  const [winner, setWinner] = useState<Player | null>(null);
 
   function handleClick(index: number) {
     if (winner) return;
 
     const nextSquares = squares.slice();
-    const nextHistory = history.slice();
     const isEmpty = nextSquares[index] == "";
     if (isEmpty) {
       nextSquares[index] = turn;
       setSquares(nextSquares);
-      nextHistory.push(nextSquares)
-      setHistory([...history, nextSquares])
+      onPlayerMove(nextSquares)
       switchTurn();
     }
 
@@ -58,17 +55,6 @@ export default function Board() {
     return null;
   }
 
-  function travelToMoveNumber(moveNumber: number) {
-    const isNotLastMove = history.length - 1 !== moveNumber;
-    if (winner && isNotLastMove) setWinner(null);
-    const nextHistory = history.slice(0, moveNumber + 1);
-    setHistory(nextHistory)
-    const lastItemIndex = nextHistory.length - 1
-    setSquares(nextHistory[lastItemIndex])
-    const nextTurn: Player = moveNumber % 2 === 0 ? "X" : "O";
-    setTurn(nextTurn);
-  }
-
   let counter = 0;
   const boardTemplate = [0, 1, 2].map((rowIndex) => {
     return <div className="board-row" key={'row-' + rowIndex}>
@@ -82,30 +68,11 @@ export default function Board() {
     </div>
   })
 
-  const historyTemplate = history.map((item, index) => {
-    if (history.length < 2 || index == 0) return;
-
-    return <button key={index} onClick={() => travelToMoveNumber(index)}>Go to move #{index}</button>
-  })
-
-  return <>
-    <p>{winner ? `${winner} is winner` : `Turn: ${turn}`}</p>
-    <div className="wrapper">
-      <div className="board">
-        {boardTemplate}
-      </div>
-      <div className="history">
-        <button onClick={() => travelToMoveNumber(0)}>Go to game start</button>
-        {historyTemplate}
-      </div>
-    </div>
-  </>;
+  return <div className="board">
+    {boardTemplate}
+  </div>;
 }
 
-type SquareInputs = {
-  value: string;
-  onSquareClick: any;
-};
 
 function Square({ value, onSquareClick }: SquareInputs) {
   return <button className="square" onClick={onSquareClick}>{value}</button>;
