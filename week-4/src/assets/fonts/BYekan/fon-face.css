@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "BYekan";
+  src: url(./BYekan.woff) format("woff"), url(./BYekan.woff2) format("woff2"),
+    url(./BYekan.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
