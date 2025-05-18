@@ -1,5 +1,5 @@
 import { LuLogIn, LuUserRoundPlus } from "react-icons/lu"
-import logo from "../assets/images/logo.png"
+import logo from "@/assets/images/logo.png"
 import { Button } from "@/components/ui/button"
 
 const Header = () => {

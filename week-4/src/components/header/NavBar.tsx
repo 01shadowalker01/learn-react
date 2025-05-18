@@ -18,7 +18,8 @@ const NavBar = () => {
                     <NavbarItem title="هنرمندان" subtitle="ARTISTS" icon={FaTheaterMasks} />
                 </li>
                 <li>
-                    <NavbarItem title="اپلیکیشن" subtitle="APP" icon={FaAndroid} iconColorClass="text-[#30dc80]" /></li>
+                    <NavbarItem title="اپلیکیشن" subtitle="APP" icon={FaAndroid} iconColorClass="text-[#30dc80]" />
+                </li>
             </ul>
 
             <div className="sear-box relative w-1/5">

@@ -1,5 +1,6 @@
-import Header from "@/components/Header"
-import NavBar from "@/components/NavBar"
+import AdvancedSearch from "@/components/advanced-search/AdvancedSearch"
+import Header from "@/components/header/Header"
+import NavBar from "@/components/header/NavBar"
 
 const MainLayout = () => {
     return (
@@ -8,6 +9,7 @@ const MainLayout = () => {
                 <Header />
                 <NavBar />
             </header>
+            <AdvancedSearch />
         </>
     )
 }

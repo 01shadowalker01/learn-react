@@ -1,0 +1,19 @@
+.range-selector {
+  background-color: var(--color-secondary2);
+  height: 6px;
+
+  .range-slider__range {
+    background-color: var(--color-background);
+    height: 4px;
+  }
+
+  .range-slider__thumb {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primary);
+    transform: rotate(45deg);
+    border-radius: 2px; /* slightly rounded corners */
+    display: inline-block;
+    top: -2px;
+  }
+}
